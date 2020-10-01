@@ -14,7 +14,12 @@ nav: true
   {% bibliography -f papers -q @*[year={{y}}]* %}
 {% endfor %}
 
-- test test
-
 </div>
 
+<div markdown="1">
+This is a list:
+
+- Item 1
+- Item 2
+- Item 3
+</div>
