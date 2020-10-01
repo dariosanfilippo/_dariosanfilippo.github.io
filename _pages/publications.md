@@ -7,8 +7,6 @@ years:
 nav: true
 ---
 
-test
-
 <div class="publications">
 
 {% for y in page.years %}
@@ -17,3 +15,5 @@ test
 {% endfor %}
 
 </div>
+
+test
