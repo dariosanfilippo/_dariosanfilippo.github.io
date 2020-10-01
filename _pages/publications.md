@@ -15,11 +15,3 @@ nav: true
 {% endfor %}
 
 </div>
-
-<div markdown="1">
-This is a list:
-
-- Item 1
-- Item 2
-- Item 3
-</div>
