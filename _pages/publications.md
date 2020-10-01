@@ -7,7 +7,9 @@ years: [1956, 1950, 1935, 1905]
 nav: true
 ---
 
-#test
+<div markdown="1">
+   My text with **markdown** syntax
+</div>
 
 <div class="publications">
 
