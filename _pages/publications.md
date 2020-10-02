@@ -20,7 +20,8 @@ nav: true
 
 </div>
 
-\
+  
+
 
 #### peer-reviewed conference papers
 
@@ -33,7 +34,8 @@ nav: true
 
 </div>
 
-\
+  
+
 
 #### theses
 
