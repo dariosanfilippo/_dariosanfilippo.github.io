@@ -20,10 +20,7 @@ nav: true
 
 </div>
 
-\
-\
-\
-####peer-reviewed conference papers
+#### peer-reviewed conference papers
 
 <div class="publications">
 
@@ -34,12 +31,7 @@ nav: true
 
 </div>
 
-<div markdown="1">
-\
-\
-\
-####theses
-</div>
+#### theses
 
 <div class="publications">
 
