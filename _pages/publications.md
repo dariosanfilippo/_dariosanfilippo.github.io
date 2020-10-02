@@ -3,7 +3,9 @@ layout: page
 permalink: /publications/
 title: publications
 description:
-years: [2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010]
+a-years: [2020, 2019, 2018, 2017, 2013, 2012]
+p-years: [2017, 2016, 2012]
+t-years: [2020, 2013]
 nav: true
 ---
 
@@ -13,9 +15,9 @@ nav: true
 
 <div class="publications">
 
-{% for y in page.years %}
+{% for y in page.a-years %}
   <h2 class="year">{{y}}</h2>
-  {% bibliography -f papers2 -q @*[year={{y}}]* %}
+  {% bibliography -f articles -q @*[year={{y}}]* %}
 {% endfor %}
 
 </div>
@@ -26,9 +28,23 @@ nav: true
 
 <div class="publications">
 
-{% for y in page.years %}
+{% for y in page.p-years %}
   <h2 class="year">{{y}}</h2>
-  {% bibliography -f papers -q @*[year={{y}}]* %}
+  {% bibliography -f papers2 -q @*[year={{y}}]* %}
 {% endfor %}
 
 </div>
+
+<div markdown="1">
+   **theses**
+</div>
+
+<div class="publications">
+
+{% for y in page.t-years %}
+  <h2 class="year">{{y}}</h2>
+  {% bibliography -f theses -q @*[year={{y}}]* %}
+{% endfor %}
+
+</div>
+
