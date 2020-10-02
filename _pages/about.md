@@ -30,3 +30,4 @@ I have a PhD in computer music from the University of Edinburgh and I have publi
 
 My research focuses on the exploration of new music through artificial intelligence and artificial life implemented via complex adaptive systems. Complex behaviours are achieved by combining fundamental principles in the design of audio feedback networks such as _agency_, _autopoiesis_, _evolvability_, _fitness_, and _radical constructivism_.
 
+___
