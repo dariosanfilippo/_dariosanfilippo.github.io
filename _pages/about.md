@@ -14,7 +14,7 @@ selected_papers: # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-#### algorithmic music – complex adaptive systems – performance ecosystems – audio programming – DSP
+##### algorithmic music – complex adaptive systems – performance ecosystems – audio programming – DSP
 
 ___
 
