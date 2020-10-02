@@ -20,6 +20,8 @@ nav: true
 
 </div>
 
+\
+
 #### peer-reviewed conference papers
 
 <div class="publications">
@@ -30,6 +32,8 @@ nav: true
 {% endfor %}
 
 </div>
+
+\
 
 #### theses
 
