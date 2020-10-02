@@ -3,9 +3,9 @@
 # -----------------------------------------------------------------------------
 
 title: Dario Sanfilippo # the website title (if blank, full name will be used instead)
-first_name:
-middle_name: Dario
-last_name: Sanfilippo
+first_name: Dario Sanfilippo
+middle_name:
+last_name:
 email: sanfilippo.dario@gmail.com
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   A simple website for an algorithmic music researcher.
