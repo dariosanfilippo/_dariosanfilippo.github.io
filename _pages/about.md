@@ -20,10 +20,12 @@ social: true  # includes social icons at the bottom of the page
 
 [//]: Link to your social media connections, too. This theme is set up to use [Font Awesome icons](http://fortawesome.github.io/Font-Awesome/){:target="\_blank"} and [Academicons](https://jpswalsh.github.io/academicons/){:target="\_blank"}, like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
 
-_Algorithmic Music – Complex Adaptive Systems – Performance Ecosystems – Audio Programming – Digital Signal Processing_
-  
-  
-  
+_algorithmic music – complex adaptive systems – performance ecosystems – audio programming – DSP_
+\
+\
+\
+\
+\
 I am a music feedback systems specialist, performer, composer, audio programmer, and researcher.
 
 I have a PhD in computer music from the University of Edinburgh and I have published for peer-reviewed journals and conferences such as Computer Music Journal, Music/Technology Journal, International Computer Music Conference, and Sound and Music Computing Conference. I have also performed in international contemporary music festivals and venues all over Europe.
