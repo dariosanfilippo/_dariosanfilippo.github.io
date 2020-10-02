@@ -41,6 +41,12 @@
               {% endif %}
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ '/assets/pdf/CV.pdf' | relative_url }}" 
+                target="_blank">
+                CV
+            </a>
+            </li>
           {% endif %}
           <!-- Other pages -->
           {% assign sorted_pages = site.pages | sort: "title" %}
