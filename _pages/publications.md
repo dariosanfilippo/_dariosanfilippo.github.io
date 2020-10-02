@@ -3,14 +3,14 @@ layout: page
 permalink: /publications/
 title: publications
 description:
-a-years: [2020, 2019, 2018, 2017, 2013, 2012]
+a-years: [2020, 2019, 2018, 2013, 2012]
 p-years: [2017, 2016, 2012]
 t-years: [2020, 2013]
 nav: true
 ---
 
 <div markdown="1">
-   **peer-reviewed journal articles**
+   **peer-reviewed journal articles**  
 </div>
 
 <div class="publications">
@@ -23,7 +23,7 @@ nav: true
 </div>
 
 <div markdown="1">
-   **peer-reviewed conference papers**
+   **peer-reviewed conference papers**  
 </div>
 
 <div class="publications">
@@ -36,7 +36,7 @@ nav: true
 </div>
 
 <div markdown="1">
-   **theses**
+   **theses**  
 </div>
 
 <div class="publications">
