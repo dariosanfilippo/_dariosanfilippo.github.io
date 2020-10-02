@@ -9,9 +9,7 @@ t-years: [2020, 2013]
 nav: true
 ---
 
-<div markdown="1">
 ####peer-reviewed journal articles
-</div>
 
 <div class="publications">
 
@@ -22,12 +20,10 @@ nav: true
 
 </div>
 
-<div markdown="1">
 \
 \
 \
 ####peer-reviewed conference papers
-</div>
 
 <div class="publications">
 
