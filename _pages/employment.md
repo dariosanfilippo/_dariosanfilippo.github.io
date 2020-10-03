@@ -15,9 +15,6 @@ nav: true
         <h5 class="font-weight-bold"><a href="https://rottingsounds.org/" target="_blank">Rotting Sounds project</a></h5>
       </div>
       <div class="col-sm-2 text-left text-sm-right">
-        <span class="badge font-weight-bold light-green darken-1 text-uppercase align-middle"  href="https://www.cs.cmu.edu/~pradeepr/courses/701/2018-spring/" target="_blank">
-            10-701
-        </span>
       </div>
     </div>
     <h6 class="font-italic mt-2 mt-sm-0">Spring 2018: Teaching Assistant</h6>
