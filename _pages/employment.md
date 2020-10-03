@@ -1,22 +1,18 @@
 ---
 layout: page
-permalink: /teaching/
-title: teaching
-description: Materials for courses you taught. Replace this text with your description.
+permalink: /employment/
+title: employment
+description:
 nav: true
 ---
 
-For now, this page is assumed to be a static description of your courses. You can convert it to a collection similar to `_projects/` so that you can have a dedicated page for each course.
-
-Organize your courses by years, topics, or universities, however you like!
-
-<h3 class="mt-4">Carnegie Mellon University</h3>
+<h3 class="mt-4">Music and Performing Arts University, Vienna</h3>
 
 <div class="card mt-3">
   <div class="p-3">
     <div class="row">
       <div class="col-sm-10">
-        <h5 class="font-weight-bold">Introduction to Machine Learning</h5>
+        <h5 class="font-weight-bold"><a href="https://rottingsounds.org/" target="_blank">Rotting Sounds project</a></h5>
       </div>
       <div class="col-sm-2 text-left text-sm-right">
         <span class="badge font-weight-bold light-green darken-1 text-uppercase align-middle"  href="https://www.cs.cmu.edu/~pradeepr/courses/701/2018-spring/" target="_blank">
