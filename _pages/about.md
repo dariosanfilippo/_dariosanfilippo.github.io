@@ -14,14 +14,14 @@ selected_papers: # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-##### algorithmic music – complex adaptive systems – AI and ALife –  performance ecosystems – audio programming – DSP
+###### algorithmic music – complex adaptive systems – AI and ALife –  performance ecosystems – audio programming – DSP
 
 ___
 
-I am a music feedback systems specialist, performer, composer, audio programmer, and researcher.
+I am a music feedback systems specialist, performer, composer, audio programmer, teacher, and researcher.
 
-I have a PhD in computer music from the University of Edinburgh and I have published for peer-reviewed journals and conferences such as Computer Music Journal, Music/Technology Journal, International Computer Music Conference, and Sound and Music Computing Conference. I have also performed in international contemporary music festivals and venues all over Europe.
+I have a PhD in computer music from the University of Edinburgh and my research focuses on the exploration of new music through artificial intelligence and artificial life implemented via complex adaptive systems. 
 
-My research focuses on the exploration of new music through artificial intelligence and artificial life implemented via complex adaptive systems. Complex behaviours are achieved by combining fundamental principles in the design of audio feedback networks such as agency, autopoiesis, evolvability, fitness, and radical constructivism.
+My work combines principles of agency, autopoiesis, evolvability, fitness, and radical constructivism for the design of complex audio feedback networks that are deployed in live performance for human-machine interaction or autonomous machines.
 
 ___
