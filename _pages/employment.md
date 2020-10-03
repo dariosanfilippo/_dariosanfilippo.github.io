@@ -17,6 +17,7 @@ nav: true
       <div class="col-sm-2 text-left text-sm-right">
       </div>
     </div>
+    <h6 class="font-italic mt-2 mt-sm-0">2020: Researcher</h6>
     <ul class="card-text font-weight-light list-group list-group-flush">
       <li class="list-group-item">○ (in collaboration with Till Bovermann) bitstream DSP library in Faust and development of a music complex adaptive system.</li>
     <h6 class="font-italic mt-2 mt-sm-0">2018-2019: Researcher</h6>
