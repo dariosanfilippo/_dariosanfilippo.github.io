@@ -1,7 +1,7 @@
 ---
 layout: page
-permalink: /publications/
-title: publications
+permalink: /Publications/
+title: Publications
 description:
 a-years: [2020, 2019, 2018, 2013, 2012]
 p-years: [2020, 2017, 2016, 2012]
