@@ -62,7 +62,7 @@ google_analytics: UA-XXXXXXXXX # out your google-analytics code
 # Blog
 # -----------------------------------------------------------------------------
 
-blog_name: Music, DSP, and related # your blog must have a name for it to show up in the nav bar
+blog_name: On music and DSP # your blog must have a name for it to show up in the nav bar
 blog_description: 
 permalink: /blog/:year/:title/
 
