@@ -2,7 +2,7 @@
 layout: page
 permalink: /employment/
 title: employment
-description:
+description: selected professional experience
 nav: true
 ---
 
