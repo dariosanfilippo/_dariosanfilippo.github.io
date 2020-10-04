@@ -56,7 +56,7 @@ nav: true
       <div class="col-sm-2 text-left text-sm-right">
       </div>
     </div>
-    <h6 class="font-italic mt-2 mt-sm-0">2016-2018: Teacher</h6>
+    <h6 class="font-italic mt-2 mt-sm-0">2016, 2017, 2018: Teacher</h6>
     <ul class="card-text font-weight-light list-group list-group-flush">
       <li class="list-group-item">○ Three-day workshop for undergrad and post-grad students on adaptive time-domain algorithms for complex sound synthesis in Pure Data.</li>
     </ul>
@@ -164,7 +164,7 @@ nav: true
     <ul class="card-text font-weight-light list-group list-group-flush">
       <li class="list-group-item">○ IEM, Institute for Electronic Music and Acoustics – Graz, Austria.</li>
     <br>
-      <h6 class="font-italic mt-2 mt-sm-0">2018, 2019:</h6>
+      <h6 class="font-italic mt-2 mt-sm-0">2017, 2018, 2019:</h6>
     <ul class="card-text font-weight-light list-group list-group-flush">
       <li class="list-group-item">○ Sibelius Academy – Helsinki, Finland.</li>
     <br>
