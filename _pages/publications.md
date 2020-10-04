@@ -22,6 +22,8 @@ nav: true
 
 ___
 
+<br>
+
 ## peer-reviewed conference papers
 
 <div class="publications">
@@ -34,6 +36,8 @@ ___
 </div>
 
 ___
+
+<br>
 
 ## theses
 
