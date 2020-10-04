@@ -192,5 +192,3 @@ nav: true
       <li class="list-group-item">○ L’Orientale University – Naples, Italy.</li>
       <li class="list-group-item">○ Digital Music Research Network – Queen Mary University of London, UK</li>
     </ul>
-  </div>
-</div>
