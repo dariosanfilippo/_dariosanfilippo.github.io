@@ -147,7 +147,9 @@ nav: true
   </div>
 </div>
 
-<h3 class="mt-4">Various universities</h3>
+<br>
+
+<h3 class="mt-4">Various institutions</h3>
 
 <div class="card mt-3">
   <div class="p-3">
@@ -192,5 +194,3 @@ nav: true
     </ul>
   </div>
 </div>
-
-
