@@ -9,7 +9,7 @@ t-years: [2020, 2013, 2011]
 nav: true
 ---
 
-#### peer-reviewed journal articles
+## peer-reviewed journal articles
 
 <div class="publications">
 
@@ -22,7 +22,7 @@ nav: true
 
 ___
 
-#### peer-reviewed conference papers
+## peer-reviewed conference papers
 
 <div class="publications">
 
@@ -35,7 +35,7 @@ ___
 
 ___
 
-#### theses
+## theses
 
 <div class="publications">
 
