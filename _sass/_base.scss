@@ -156,9 +156,9 @@ a, table.table a {
 // Social (bottom)
 
 .social {
-  text-align: center;
+  text-align: top-left;
   .contact-icon {
-    font-size: 4rem;
+    font-size: 2rem;
     a {
       color: $grey-color-dark;
       &:hover {
