@@ -2,6 +2,10 @@
  * Styles for the base elements of the theme.
  ******************************************************************************/
 
+.list-group-flush > .list-group-item {
+    border-width: 0;
+}
+
 // Typography
 
 a, table.table a {
