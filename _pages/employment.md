@@ -70,7 +70,7 @@ nav: true
         <h5 class="font-weight-bold">Sonic structures</h5>
       </div>
       <div class="col-sm-2 text-left text-sm-right">
-        <span class="badge font-weight-bold light-green darken-1 text-uppercase align-middle">
+        <span class="badge font-weight-bold light-red darken-1 text-uppercase aliign-middle" target="_blank">
             ARCH11009
         </span>
       <div class="col-sm-2 text-left text-sm-right">
