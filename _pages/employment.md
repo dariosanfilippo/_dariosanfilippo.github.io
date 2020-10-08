@@ -38,7 +38,7 @@ nav: true
     </div>
     <h6 class="font-italic mt-2 mt-sm-0">2014-2015, 2018-2020: Researcher</h6>
     <ul class="card-text font-weight-light list-group list-group-flush">
-      <li class="list-group-item">○ Modelling and implementation of high-order delta-sigma modulators; research on Boolean DSP algorithms for sound and music.</li>
+      <li class="list-group-item">○ (In collaboration with Philip Leitner.) Modelling and implementation of high-order delta-sigma modulators; research on Boolean DSP algorithms for sound and music.</li>
     </ul>
   </div>
 </div>
