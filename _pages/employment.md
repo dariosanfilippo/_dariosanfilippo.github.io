@@ -12,7 +12,7 @@ nav: true
   <div class="p-3">
     <div class="row">
       <div class="col-sm-10">
-        <h5 class="font-weight-bold"><a href="https://rottingsounds.org/" target="_blank">Rotting Sounds</a></h5>
+        <h5 class="font-weight-bold">Rotting Sounds</h5>
       </div>
       <div class="col-sm-2 text-left text-sm-right">
       </div>
@@ -67,13 +67,7 @@ nav: true
   <div class="p-3">
     <div class="row">
       <div class="col-sm-10">
-        <h5 class="font-weight-bold">Sonic structures</h5>
-      </div>
-      <div class="col-sm-2 text-left text-sm-right">
-        <span class="badge font-weight-bold light-red darken-1 text-uppercase aliign-middle" target="_blank">
-            ARCH11009
-        </span>
-      <div class="col-sm-2 text-left text-sm-right">
+        <h5 class="font-weight-bold">Sonic structures (ARCH11009)</h5>
       </div>
     </div>
     <h6 class="font-italic mt-2 mt-sm-0">2016-2018: Teaching fellow</h6>
@@ -87,14 +81,14 @@ nav: true
   <div class="p-3">
     <div class="row">
       <div class="col-sm-10">
-        <h5 class="font-weight-bold">Non-real-time systems</h5>
+        <h5 class="font-weight-bold">Non-real-time systems (MUSI11019)</h5>
       </div>
       <div class="col-sm-2 text-left text-sm-right">
       </div>
     </div>
     <h6 class="font-italic mt-2 mt-sm-0">2016-2017: Teaching fellow</h6>
     <ul class="card-text font-weight-light list-group list-group-flush">
-      <li class="list-group-item">○ Undergrad and post-grad course on the LISP/Slippery Chicken environment for algorithmic composition.</li>
+      <li class="list-group-item">○ Post-grad course on the LISP/Slippery Chicken environment for algorithmic composition.</li>
     </ul>
   </div>
 </div>
@@ -103,14 +97,14 @@ nav: true
   <div class="p-3">
     <div class="row">
       <div class="col-sm-10">
-        <h5 class="font-weight-bold">Algorithmic composition</h5>
+        <h5 class="font-weight-bold">Algorithmic composition (MUSI10087)</h5>
       </div>
       <div class="col-sm-2 text-left text-sm-right">
       </div>
     </div>
     <h6 class="font-italic mt-2 mt-sm-0">2016-2017: Teaching fellow</h6>
     <ul class="card-text font-weight-light list-group list-group-flush">
-      <li class="list-group-item">○ Undergrad and post-grad course on the LISP/Slippery Chicken environment for algorithmic composition.</li>
+      <li class="list-group-item">○ Undergrad course on the LISP/Slippery Chicken environment for algorithmic composition.</li>
     </ul>
   </div>
 </div>
@@ -120,7 +114,7 @@ nav: true
   <div class="p-3">
     <div class="row">
       <div class="col-sm-10">
-        <h5 class="font-weight-bold">Digital media studio project</h5>
+        <h5 class="font-weight-bold">Digital media studio project (ARCH11006)</h5>
       </div>
       <div class="col-sm-2 text-left text-sm-right">
       </div>
@@ -156,7 +150,7 @@ nav: true
   <div class="p-3">
     <div class="row">
       <div class="col-sm-10">
-        <h5 class="font-weight-bold">Audio programming</h5>
+        <h5 class="font-weight-bold">Audio programming (CMP407)</h5>
       </div>
       <div class="col-sm-2 text-left text-sm-right">
       </div>
