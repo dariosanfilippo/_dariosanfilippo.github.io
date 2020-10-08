@@ -170,7 +170,7 @@ nav: true
     <div class="p-3">
         <div class="row">
             <div class="col-sm-10">
-                <h5 class="font-weight-bold">Guest lectures on complex adaptive systems</h5>
+                <h5 class="font-weight-bold">Guest lectures on music complex adaptive systems</h5>
             </div>
         </div>
         <h6 class="font-italic mt-2 mt-sm-0">2020:</h6>
