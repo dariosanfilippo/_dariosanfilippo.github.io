@@ -133,17 +133,29 @@ So far, we have implemented a somewhat elementary circuit. Now, we can try to im
 
 As we can see, the implementation is not as straightforward as the previous case. It can be useful to name several points in the circuit to determine the fundamental signals to compose the whole circuit. Here, we introduce $$ G = g/(1+g) $$, $$ v $$ as the signal taken after the $$ G $$ multiplication, $$ s $$ as the state of the system, that is the output of the $$ z^-1 $$ operator, and $$ y $$ as the output of the system. Hence, we have that:
 
-$$ v = G(x - s) $$
+$$ 
+\begin{align*}
 
-$$ y = v + s $$
+& v = G(x - s)
 
-$$ s = v + y $$
+& y = v + s 
+
+& s = v + y
+
+\end{align*}
+$$
 
 If we substitute $$ v $$ and $$ y $$, then we have that:
 
-$$ y = G(x - s) + s $$
+$$ 
+\begin{align*}
 
-$$ s = 2G(x - s) + s $$
+& y = G(x - s) + s
+
+& s = 2G(x - s) + s
+
+\end{align*}
+$$
 
 and we can define two paths, one for the state, the other for the output of the system. Specifically, we can write the paths replacing all occurrences of *s* with a wire, which we will then fill with feedback loops from the state path. It is convenient to define the state first, and the output second, as the tilde operator applies to signals to its left starting from the top:
 
@@ -170,7 +182,7 @@ process = lowpass;
     Zavalishin's first-order zero-delay feedback lowpass diagram implemented with Faust's basic syntax.
 </div>
 
-As we can notice, the signal $$ (x - s) * G + s $$ repeats twice in the diagram. However, Faust's optimisation will make sure that the signal will be computed only once. Still, if we want the diagram to be closer to the original circuit, then we can write the following, copying the signal $$ (x - s) * G $$ internally to compose the necessary remaining signals:
+As we can notice, the signal $$ G(x - s) + s $$ repeats twice in the diagram. However, Faust's optimisation will make sure that the signal will be computed only once. Still, if we want the diagram to be closer to the original circuit, then we can write the following, copying the signal $$ G(x - s) $$ internally to compose the necessary remaining signals:
 
 {% highlight faust linenos %}
 
@@ -258,17 +270,29 @@ For the last example, we will implement Martin Vicanek's beautiful [quadrature o
 
 Here, we have a feedback system with two cross-coupled states. Hence, it is not as straightforward as with systems having only one state, for we must send each state back to the appropriate inputs. In this system, we need to define two state paths, which correspond to the two outputs of the system. Similarly to what we did earlier, we can define the states by composing the paths with the signals feeding into the $$ z^-1 $$ operators. Thus, the two states $$ u_n $$ and $$ v_n $$ are defined as follows:
 
-$$ u_n = w_n - k_1(v_n + k_2 \cdot w_n) $$
+$$ 
+\begin{align*}
 
-$$ v_n = v_n + k_2 \cdot w_n $$
+& u_n = w_n - k_1(v_n + k_2 \cdot w_n)
 
-$$ w_n = u_n - k_1 \cdot v_n $$
+& v_n = v_n + k_2 \cdot w_n
+
+& w_n = u_n - k_1 \cdot v_n
+
+\end{align*}
+$$
 
 If we substitute $$ w_n $$, we have that:
 
-$$ u_n = u_n - k_1 \cdot v_n - k_1(v_n + k_2(u_n - k_1 \cdot v_n)) $$
+$$
+\begin{align*}
 
-$$ v_n = v_n + k_2(u_n - k_1 \cdot v_n) $$
+& u_n = u_n - k_1 \cdot v_n - k_1(v_n + k_2(u_n - k_1 \cdot v_n)) 
+
+& v_n = v_n + k_2(u_n - k_1 \cdot v_n) 
+
+\end{align*}
+$$
 
 To start with, using basic syntax, we will simply put a wire wherever a state is fed back without distinguishing between $$ u_n $$ or $$ v_n $$:
 
