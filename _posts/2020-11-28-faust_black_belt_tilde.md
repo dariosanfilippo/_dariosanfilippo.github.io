@@ -247,11 +247,6 @@ process = lowpass;
 
 For the last example, we will implement Martin Vicanek's beautiful [quadrature oscillator](https://vicanek.de/articles/QuadOsc.pdf), a recursive self-oscillating system with two states. See the circuit below.
 
-img.center {
-    display: block;
-    margin: 0 auto;
-}
-
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
         <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/img/quadosc.png">
