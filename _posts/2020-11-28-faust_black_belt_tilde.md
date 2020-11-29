@@ -136,11 +136,11 @@ As we can see, the implementation is not as straightforward as the previous case
 $$ 
 \begin{align*}
 
-& v = G(x - s) //
+& v = G(x - s) \\
 
-& y = v + s //
+& y = v + s \\
 
-& s = v + y //
+& s = v + y \\
 
 \end{align*}
 $$
@@ -150,9 +150,9 @@ If we substitute $$ v $$ and $$ y $$, then we have that:
 $$ 
 \begin{align*}
 
-& y = G(x - s) + s //
+& y = G(x - s) + s \\
 
-& s = 2G(x - s) + s //
+& s = 2G(x - s) + s \\
 
 \end{align*}
 $$
@@ -273,11 +273,11 @@ Here, we have a feedback system with two cross-coupled states. Hence, it is not 
 $$ 
 \begin{align*}
 
-& u_n = w_n - k_1(v_n + k_2 \cdot w_n) //
+& u_n = w_n - k_1(v_n + k_2 \cdot w_n) \\
 
-& v_n = v_n + k_2 \cdot w_n //
+& v_n = v_n + k_2 \cdot w_n \\
 
-& w_n = u_n - k_1 \cdot v_n //
+& w_n = u_n - k_1 \cdot v_n \\
 
 \end{align*}
 $$
@@ -287,9 +287,9 @@ If we substitute $$ w_n $$, we have that:
 $$
 \begin{align*}
 
-& u_n = u_n - k_1 \cdot v_n - k_1(v_n + k_2(u_n - k_1 \cdot v_n)) //
+& u_n = u_n - k_1 \cdot v_n - k_1(v_n + k_2(u_n - k_1 \cdot v_n)) \\
 
-& v_n = v_n + k_2(u_n - k_1 \cdot v_n) //
+& v_n = v_n + k_2(u_n - k_1 \cdot v_n) \\
 
 \end{align*}
 $$
