@@ -373,7 +373,7 @@ process = quadosc;
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
-        <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/img/quadosc_faust_b.png">
+        <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/img/quadosc_faust_c.png">
     </div>
 </div>
 <div class="caption">
