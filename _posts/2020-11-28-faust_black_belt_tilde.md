@@ -34,8 +34,9 @@ Back to the lowpass filter, we can see the diagram below, kindly taken from the 
     </div>
 </div>
 
+<br>
   
-Following [Chamberlin 1985] for the design of the filter, we can write the function using the basic syntax as follows:
+Following [Chamberlin 1985] for the design of the filter, we can write the function using basic syntax as follows:
 
 {% highlight faust linenos %}
 
@@ -86,10 +87,10 @@ process = lowpass;
     </div>
 </div>
 <div class="caption">
-    Block diagram generated through intermediate function and the *with* environment.
+    Block diagram generated through intermediate function and the <i>with</i> environment.
 </div>
 
-The third way, perhaps the most elegant and concise, is through the *letrec* environment. Within this environment, we can define signals recursively, similarly to how recurrence equations are written.
+The third way, perhaps the most elegant and concise, is through the <i>letrec</i> environment. Within this environment, we can define signals recursively, similarly to how recurrence equations are written.
 
 {% highlight faust linenos %}
 
@@ -116,5 +117,127 @@ process = lowpass;
     </div>
 </div>
 <div class="caption">
-    Block diagram generated through the *letrec* environment.
+    Block diagram generated through the <i>letrec</i> environment.
+</div>
+
+So far, we have implemented a somewhat elementary circuit. Now, let's try something more challenging. Particularly, we can try to implement a one-pole lowpass filter with zero-delay feedback topology. The circuit below is taken from the book by Zavalishin on virtual analogue filters design. (See [Zavalishin 2012].)
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/img/lptpt_diagram.png">
+    </div>
+</div>
+<div class="caption">
+    Zavalishin's first-order zero-delay feedback lowpass with resolved topology.
+</div>
+
+As we can see, the implementation is not as straightforward as the previous case. A useful thing to do is to name several points in the circuit to determine the fundamental signals to compose the whole circuit. Here, we introduce G = g/(1+g), v as the signal taken after the G multiplication, s as the state of the system, that is the output of the z^-1 operator, and y as the output of the system. Hence, we have that:
+
+v = (x - s) * G
+y = v + s
+s = v + y
+
+If we substitute v and y, then we have that:
+
+y = (x - s) * G + s
+s = 2 * (x - s) * G + s
+
+and we can define two paths, one for the state, the other for the output of the system. Specifically, we can write the paths replacing all occurrences of "s" with a wire, which we will then fill with feedback loops from the state path. It is convenient to define the state first, and the output second, as the tilde operator applies to signals to its left starting from the top.
+
+{% highlight faust linenos %}
+
+import("stdfaust.lib");
+lowpass(cf, x) = 
+    (2 * (x - _) * G + _ , // state path
+    (x - _) * G + _) ~ (_ <: si.bus(4)) : ! , _ // output path
+    with {
+        G = tan(w(cf) / 2) / (1 + tan(w(cf) / 2));
+        w(f) = 2 * ma.PI * f / ma.SR;
+    };
+process = lowpass;
+
+{% endhighlight %}
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/img/lptpt_diagram_faust_a.png">
+    </div>
+</div>
+<div class="caption">
+    Zavalishin's first-order zero-delay feedback lowpass diagram generated with Faust's basic syntax.
+</div>
+
+As we can notice, the signal (x - s) * G + s repeats twice in the diagram. However, Faust's optimisation will make sure that the signal will be computed only once. Still, if we want the diagram to be closer to the original circuit, then we can write the following, copying the signal (x - s) * G internally to compose the necessary remaining signals:
+
+{% highlight faust linenos %}
+
+import("stdfaust.lib");
+lowpass(cf, x) = 
+    (((x - _) * G <: _ , _) , _ : (_ , (+ <: _ , _)) : (+ , _)) ~ (_ <: si.bus(2)) : ! , _
+    with {
+        G = tan(w(cf) / 2) / (1 + tan(w(cf) / 2));
+        w(f) = 2 * ma.PI * f / ma.SR;
+    };
+process = lowpass;
+
+{% endhighlight %}
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/img/lptpt_diagram_faust_a1.png">
+    </div>
+</div>
+<div class="caption">
+    Zavalishin's first-order zero-delay feedback lowpass improved diagram.
+</div>
+
+Now, we can implement the filter using an intermediate function:
+
+{% highlight faust linenos %}
+
+import("stdfaust.lib");
+lowpass(cf, x) = loop ~ _ : ! , _
+    with {
+        loop(fb) = (x - fb) * G <: _ , +(fb) : _ , (_ <: _ , _) : + , _;
+        G = tan(w(cf) / 2) / (1 + tan(w(cf) / 2));
+        w(f) = 2 * ma.PI * f / ma.SR;
+    };
+process = lowpass;
+
+{% endhighlight %}
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/img/lptpt_diagram_faust_b.png">
+    </div>
+</div>
+<div class="caption">
+    Zavalishin's first-order zero-delay feedback lowpass diagram generated through intermediate function.
+</div>
+
+And finally, we can use the *letrec* environment for a concise and elegant solution, although the diagram will show some redundancy:
+
+{% highlight faust linenos %}
+
+import("stdfaust.lib");
+lowpass(cf, in) = y
+    letrec {
+        'y = (in - s) * G + s;
+        's = 2 * (in - s) * G + s;
+    }
+    with {
+        G = tan(w(cf) / 2) / (1 + tan(w(cf) / 2));
+        w(f) = 2 * ma.PI * f / ma.SR;
+    };
+process = lowpass;
+
+{% endhighlight %}
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/img/lptpt_diagram_faust_c.png">
+    </div>
+</div>
+<div class="caption">
+    Zavalishin's first-order zero-delay feedback lowpass diagram generated through the <i>letrec</i> environment.
 </div>
