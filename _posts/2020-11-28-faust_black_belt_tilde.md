@@ -6,7 +6,7 @@ description: this post shows examples to implement complex circuits in Faust
 ---
 After a long silence, this post is about the implementation of not-so-simple recursive circuits in the Faust language. We will see a few relevant examples and the three main approaches that we can follow to implement a circuit: Faust's signal composition operators syntax (basic syntaxt, for short), the *with* environment with auxiliary function definition, and the *letrec* environment.
 
-The Faust manual provides basic examples for the first and third approach, specifically using the "~" (tilde) recursive composition operator and the letrec environment for recursive definitions. As we will see later, Faust's basic syntax can be less concise and more complicated in some cases, whereas the remaining two approaches are easier. However, the basic syntax can be desirable if we want to generate diagrams that show the signal flow of a circuit more clearly. In this post, I will implement a few circuits with feedback using all of the three approaches.
+The Faust manual provides basic examples for the first and third approach, specifically using the "~" (tilde) recursive composition operator and the letrec environment for recursive definitions. As we will see later, Faust's basic syntax can be less concise and more complicated in some cases, whereas the remaining two approaches are easier. However, the *letrec* environment, despite being concise, is not always desirable if we want to generate diagrams that have little or no redundancy. In this post, I will implement a few circuits with feedback using all of the three approaches.
 
 Let's start with a simple one-pole lowpass filter, which is essentially a scaled-down input feeding into a leaky integrator. In the basic syntax, the tilde operator sends the signal(s) to its left through as well as back into a feedback path to fill the first available inputs in the function. The operands to the right of the tilde are applied in the feedback path. The tilde operator, unlike all other basic synthax operators, is left-assiociative and has highest priority. So, for example, if we write:
 
@@ -117,7 +117,7 @@ process = lowpass;
     </div>
 </div>
 <div class="caption">
-    Block diagram generated through the <i>letrec</i> environment.
+    Block diagram implemented through the <i>letrec</i> environment.
 </div>
 
 So far, we have implemented a somewhat elementary circuit. Now, let's try something more challenging. Particularly, we can try to implement a one-pole lowpass filter with zero-delay feedback topology. The circuit below is taken from the book by Zavalishin on virtual analogue filters design. (See [Zavalishin 2012].)
@@ -134,12 +134,15 @@ So far, we have implemented a somewhat elementary circuit. Now, let's try someth
 As we can see, the implementation is not as straightforward as the previous case. A useful thing to do is to name several points in the circuit to determine the fundamental signals to compose the whole circuit. Here, we introduce G = g/(1+g), v as the signal taken after the G multiplication, s as the state of the system, that is the output of the z^-1 operator, and y as the output of the system. Hence, we have that:
 
 v = (x - s) * G
+
 y = v + s
+
 s = v + y
 
 If we substitute v and y, then we have that:
 
 y = (x - s) * G + s
+
 s = 2 * (x - s) * G + s
 
 and we can define two paths, one for the state, the other for the output of the system. Specifically, we can write the paths replacing all occurrences of "s" with a wire, which we will then fill with feedback loops from the state path. It is convenient to define the state first, and the output second, as the tilde operator applies to signals to its left starting from the top.
@@ -164,7 +167,7 @@ process = lowpass;
     </div>
 </div>
 <div class="caption">
-    Zavalishin's first-order zero-delay feedback lowpass diagram generated with Faust's basic syntax.
+    Zavalishin's first-order zero-delay feedback lowpass diagram implemented with Faust's basic syntax.
 </div>
 
 As we can notice, the signal (x - s) * G + s repeats twice in the diagram. However, Faust's optimisation will make sure that the signal will be computed only once. Still, if we want the diagram to be closer to the original circuit, then we can write the following, copying the signal (x - s) * G internally to compose the necessary remaining signals:
@@ -212,7 +215,7 @@ process = lowpass;
     </div>
 </div>
 <div class="caption">
-    Zavalishin's first-order zero-delay feedback lowpass diagram generated through intermediate function.
+    Zavalishin's first-order zero-delay feedback lowpass diagram implemented through intermediate function.
 </div>
 
 And finally, we can use the *letrec* environment for a concise and elegant solution, although the diagram will show some redundancy:
@@ -241,3 +244,140 @@ process = lowpass;
 <div class="caption">
     Zavalishin's first-order zero-delay feedback lowpass diagram generated through the <i>letrec</i> environment.
 </div>
+
+For the last example, we will implement Martin Vicanek's beautiful quadrature oscillator, a recursive self-oscillating system with two states. See the circuit below.
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/img/quadosc.png">
+    </div>
+</div>
+<div class="caption">
+    Martin Vicanek's quadrature oscillator.
+</div>
+
+Here, we have a feedback system with two cross-coupled and interacting states. Hence, it is not as straightforward as with systems having only one state, for we must send the right state back to the right inputs. In this system, we need to define two state paths, which correspond to the two outputs of the system. Similarly to what we did earlier, we can define the states by composing the paths with whatever signal goes in the z^-1 operators. Thus, the two states u_n and v_n are defined as follows:
+
+u_n = w_n - k1 * (v_n + k2 * w_n)
+
+v_n = v_n + k2 * w_n
+
+w_n = u_n - k1 * v_n
+
+If we substitute w_n, we have that:
+
+u_n = u_n - k1 * v_n - k1 * (v_n + k2 * (u_n - k1 * v_n))
+
+v_n = v_n + k2 * (u_n - k1 * v_n)
+
+To start with, using basic syntax, we will simply put a wire whereever a state is fed back without distinguishing between u_n or v_n:
+
+{% highlight faust linenos %}
+
+import("stdfaust.lib");
+quadosc(f) =    (_ - k1 * _ - k1 * (_ + k2 * (_ - k1 * _)) ,    // u_n path
+                _ + k2 * (_ - k1 * _))                          // v_n path
+    with {
+        k1 = tan(ma.PI * f / ma.SR);        
+        k2 = (2 * k1) / (1 + k1 * k1);
+    };
+process = quadosc;
+
+{% endhighlight %}
+
+This will lead to the following network, where the external inputs are feedback paths that need to be matched with the corresponding states. 
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/img/quadosc_faust_a1.png">
+    </div>
+</div>
+<div class="caption">
+    Intermediate implementation stage of Vicanek's oscillator.
+</div>
+
+At this point, and without worrying about redundancy in the resulting diagram, the easiest thing to do is to send the two states in the feedback path and then copy and route them accordingly. We can do so using the "route" primitive, which we can call specifying the number of inputs and the number of outputs, as well as a set of input-output pairs to distribute the signals. Furthermore, we will also add a one-sample impulse to the u_n states as their initial condition must be 1.
+
+{% highlight faust linenos %}
+
+import("stdfaust.lib");
+quadosc(f) =    
+    (_ + Dirac - k1 * _ - k1 * (_ + k2 * (_ + Dirac - k1 * _)) ,    // u_n path
+    _ + k2 * (_ + Dirac - k1 * _))                                  // v_n path
+    ~ route(2, 8, 1, 1, 2, 2, 2, 3, 1, 4, 2, 5, 2, 6, 1, 7, 2, 8)
+    with {
+        k1 = tan(ma.PI * f / ma.SR);        
+        k2 = (2 * k1) / (1 + k1 * k1);
+        Dirac = 1 - 1';
+    };
+process = quadosc;
+
+{% endhighlight %}
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/img/quadosc_faust_a2.png">
+    </div>
+</div>
+<div class="caption">
+    Vicanek's oscillator diagram implemented through Faust's basic syntax.
+</div>
+
+Next, we can see how to implement the oscillator using the second approach. It should be clear now:
+
+{% highlight faust linenos %}
+
+import("stdfaust.lib");
+quadosc(f) = loop ~ (_ , _)
+    with {
+        loop(u_n, v_n) =    w_n - k1 * (v_n + k2 * w_n) ,   // u_n path
+                            v_n + k2 * w_n                  // v_n path
+            with {
+                w_n = Dirac + u_n - k1 * v_n;
+            };
+        k1 = tan(ma.PI * f / ma.SR);
+        k2 = (2 * k1) / (1 + k1 * k1);
+        Dirac = 1 - 1';
+    };
+process = quadosc;
+
+{% endhighlight %}
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/img/quadosc_faust_b.png">
+    </div>
+</div>
+<div class="caption">
+    Vicanek's oscillator diagram implemented through an intermediate function.
+</div>
+
+Lastly, we can see how to implement the system using *letrec*:
+
+{% highlight faust linenos %}
+
+import("stdfaust.lib");
+quadosc(f) = u_n , v_n
+    letrec {
+        'u_n = Dirac + u_n - k1 * v_n - k1 * (v_n + k2 * (Dirac + u_n - k1 * v_n));
+        'v_n = v_n + k2 * (Dirac + u_n - k1 * v_n);
+    }
+        with {
+            k1 = tan(ma.PI * f / ma.SR);
+            k2 = (2 * k1) / (1 + k1 * k1);
+            Dirac = 1 - 1';
+        };
+process = quadosc;
+
+{% endhighlight %}
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/img/quadosc_faust_b.png">
+    </div>
+</div>
+<div class="caption">
+    Vicanek's oscillator diagram implemented through the <i>letrec</i> environment.
+</div>
+
+Overall, it seems that the *with* and *letrec* environments are best to work with. Particularly the *with* environment with auixiliary function, it allows to define temporary or intermediate signals as we did for the quadrature oscillator. Using *letrec*, instead, that would not be possible as it would introduce a delay in the auxiliary path. The basic syntax, though, is still useful when we want to generate diagrams showing the entire network topology.
