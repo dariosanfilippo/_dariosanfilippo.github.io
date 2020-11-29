@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Three ways to implement non-trivial recursive circuits in the Faust language
+title: Three ways to implement recursive circuits in the Faust language
 date: 2020-11-28
 description: This post shows examples of how to implement complex circuits in Faust.
 ---
