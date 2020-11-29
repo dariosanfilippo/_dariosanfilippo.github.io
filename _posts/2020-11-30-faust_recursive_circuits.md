@@ -320,7 +320,7 @@ This will lead to the following network, where the external inputs are feedback 
     Intermediate implementation stage of Vicanek's oscillator.
 </div>
 
-At this point, and without worrying about redundancy in the resulting diagram, the easiest thing to do is to send the two states in the feedback path and then copy and route them accordingly. We can do so using the "route" primitive, which we can call specifying the number of inputs and the number of outputs, as well as a set of input-output pairs to distribute the signals. Furthermore, we will also add a one-sample impulse to the $$ u_n $$ state as its initial condition must be 1.
+At this point, and without worrying about redundancy in the resulting diagram, the easiest thing to do is to send the two states to the feedback path and then copy and route them accordingly. We can do so using the "route" primitive, which we can call specifying the number of inputs, the number of outputs, and a set of input-output pairs to route the signals. Furthermore, we will also add a one-sample impulse to the $$ u_n $$ state as its initial condition must be 1.
 
 {% highlight faust linenos %}
 
