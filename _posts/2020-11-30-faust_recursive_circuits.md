@@ -182,7 +182,7 @@ process = lowpass;
     Zavalishin's first-order zero-delay feedback lowpass diagram implemented with Faust's basic syntax.
 </div>
 
-As we can notice, the signal $$ G(x - s) + s $$ repeats twice in the diagram. However, Faust's optimisation will make sure that the signal will be computed only once. Still, if we want the diagram to be closer to the original circuit, then we can write the following, copying the signal $$ G(x - s) $$ internally to compose the necessary remaining signals:
+As we can notice, the signal $$ G(x - s) + s $$ repeats twice in the diagram. However, Faust's optimisation will make sure that the signal is computed only once. Still, if we want the diagram to be closer to the original circuit, then we can write the following, copying the signal $$ G(x - s) $$ internally to compose the necessary remaining signals:
 
 {% highlight faust linenos %}
 
