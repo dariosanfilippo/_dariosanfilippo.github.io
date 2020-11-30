@@ -8,7 +8,7 @@ After a long silence, this post is about the implementation of not-so-simple rec
 
 The Faust manual provides basic examples for the [first](https://faustdoc.grame.fr/manual/syntax/#recursive-composition), [second](https://faustdoc.grame.fr/manual/syntax/#with-expression), and [third](https://faustdoc.grame.fr/manual/syntax/#letrec-expression) approaches. As we will see later, Faust's basic syntax can be less concise and more complicated in some cases, whereas the remaining two approaches are easier. However, the *letrec* environment, despite being concise, is not always desirable if we want to generate diagrams that have little or no redundancy. In this post, we will implement a few circuits with feedback using all of the three approaches.
 
-Let's start with a simple one-pole lowpass filter, which is essentially a scaled-down input feeding into an integrator. In the basic syntax, the tilde operator lets the signal(s) to its left through and sendsthem back into a feedback path to fill the first available input(s) in the function. The operand or group of operands immediately after the tilde operator is applied in the feedback path. The tilde operator, unlike all other basic synthax operators, is left-assiociative and has highest priority. So, for example, if we write:
+Let's start with a simple one-pole lowpass filter, which is essentially a scaled-down input feeding into an integrator. In the basic syntax, the tilde operator lets the signal(s) to its left through and sendsthem back into a feedback path to fill the first available input(s) in the function. The operand or group of operands immediately after the tilde operator is applied to the feedback path. The tilde operator, unlike all other basic synthax operators, is left-assiociative and has highest priority. For example, if we write:
 
 {% highlight faust linenos %}
 
@@ -26,7 +26,7 @@ process = (+ , _ : + : + ~ _) ~ *(.5);
 
 {% endhighlight %}
 
-Back to the lowpass filter, we can see the diagram below, kindly taken from the site of [Julius Smith](https://ccrma.stanford.edu/~jos/). 
+Back to the lowpass filter, we can see the diagram below, kindly taken from the website of [Julius Smith](https://ccrma.stanford.edu/~jos/). 
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
@@ -182,7 +182,7 @@ process = lowpass;
     Zavalishin's first-order zero-delay feedback lowpass diagram implemented with Faust's basic syntax.
 </div>
 
-As we can notice, the signal $$ G(x - s) + s $$ repeats twice in the diagram. However, Faust's optimisation will make sure that the signal is computed only once. Still, if we want the diagram to be closer to the original circuit, then we can write the following, copying the signal $$ G(x - s) $$ internally to compose the necessary remaining signals:
+As we can notice, the signal $$ G(x - s) + s $$ repeats twice in the diagram. However, Faust's optimisation will make sure that the signal is computed only once. Still, if we want the diagram to be closer to the original circuit, then we can write the following, copying the signal $$ G(x - s) $$ internally to compose the remaining necessary signals:
 
 {% highlight faust linenos %}
 
