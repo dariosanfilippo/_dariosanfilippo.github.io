@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Handling infinity and not-a-number (NaN) values in Faust and C++ audio programming
-date: 2020-12-27
+date: 2020-12-28
 description: This post discusses insights gained over a few years of audio programming to implement robust Faust/C++ software, particularly when dealing with infinity and NaN values.
 ---
 
@@ -107,7 +107,7 @@ process = safe_div(1, den);
 
 {% endhighlight %}
 
-Note that ma.INFINITY corresponds to $$ MAX $$ in Faust, and that we must delay the value that defines the denominator; otherwise, the Faust compiler will detect a division by zero and will fail to compile. For the denominator, we generated a $$ -0 $$ at the second sample, which results in the $$ -MAX $$ constant. Also note that this division is effective to keep audio streams clean from $$ NaN $$ and $$ \mathit{inf} $$ values, although the division by zero can still take place. However, if the hardware follows the [IEEE 754](https://en.wikipedia.org/wiki/IEEE_754) standard, the floating-point division by zero will produce $$ \pm \mathit{inf} $$ instead of being signalled as an exception by the C++ program, unless both numerator and denominator are $$ 0 $$, in which case it will produce $$ NaN $$. For the same reason, consider that Faust's syntax is strict and that all branches of an if-statement are always evaluated; you may want to read [this](https://github.com/grame-cncm/faustdoc/blob/master/mkdocs/docs/manual/faq.md) as well. 
+Note that $$ \mathit{ma.INFINITY} $$ corresponds to $$ MAX $$ in Faust, and that we must delay the value that defines the denominator; otherwise, the Faust compiler will detect a division by zero and will fail to compile. For the denominator, we generated a $$ -0 $$ at the second sample, which results in the $$ -MAX $$ constant. Also note that this division is effective to keep audio streams clean from $$ NaN $$ and $$ \mathit{inf} $$ values, although the division by zero can still take place. However, if the hardware follows the [IEEE 754](https://en.wikipedia.org/wiki/IEEE_754) standard, the floating-point division by zero will produce $$ \pm \mathit{inf} $$ instead of being signalled as an exception by the C++ program, unless both numerator and denominator are $$ 0 $$, in which case it will produce $$ NaN $$. For the same reason, consider that Faust's syntax is strict and that all branches of an if-statement are always evaluated; you may want to read [this](https://github.com/grame-cncm/faustdoc/blob/master/mkdocs/docs/manual/faq.md) as well. 
 
 Another problem of clipping only the output of a function as a guard is that $$ NaN $$ values are never output in *std::max()* and *std::min()* functions, hence whether the indeterminate form $$ 0/0 $$ results in $$ MAX $$ or $$ MIN $$ only depends on the implementation of the clipping function, namely whether we first check against the upper or lower limit. In general, the most effective guards that we have against $$ NaN $$ and $$ \mathit{inf} $$ values are the *std::max()* and *std::min()* functions combined with the numerical limit constants above to effectively limit the domain of other functions. If an operator or function is indeterminate for some input, then it is necessary to limit the input domain and, in some cases, the output domain too. Otherwise, limiting only the output is adequate. A strict safe division function in Faust could then look like this:
 
