@@ -31,7 +31,7 @@ $$
 & \pm \infty^0 = 1 \\
 & \pm \infty^1 = \pm \infty \\
 & \pm \infty^{-1} = \pm 0 \\
-& \pm \infty^{\infty} = \pm \infty \\
+& \pm \infty^{\infty} = \infty \\
 & \pm \infty^{-\infty} = 0 \\
 & \pm 1^{\pm \infty} = 1 \\
 & 0^0 = 1 \\
