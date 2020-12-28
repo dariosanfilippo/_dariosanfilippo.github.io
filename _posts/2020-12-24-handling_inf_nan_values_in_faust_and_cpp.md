@@ -38,7 +38,8 @@ $$
 & \sqrt{x} = NaN \quad \{x \in \mathbb{R} : x < 0\} \\
 & \sqrt{\infty} = \infty \\
 & \sqrt{-\infty} = NaN \\
-& \log{0} = \infty \\
+& \log{0} = -\infty (wrongly +\infty in Faust) \\
+& \log(\infty) = \infty \\
 & \log{x} = NaN \quad \{x \in \mathbb{R} : x < 0\} \\
 & cos(\pm \infty) = NaN \\
 & sin(\pm \infty) = NaN \\
@@ -95,7 +96,7 @@ process = safe_div(1, 0);
 
 {% endhighlight %}
 
-In this case, the output of $$ 1/0 $$ is $$ 4503599627370496 $$, which is in a much safer range. Still, if the value were multiplied by a number greater than $$ MAX \cdot \epsilon $$, it would become $$ \mathit{inf} $$. Otherwise, we could simply clip the output of the $$ / $$ operator to $$ MAX $$ and $$ -MAX $$ to guarantee that neither $$ \mathit{inf} $$ or $$ NaN $$ values are output:
+In this case, the output of $$ 1/0 $$ is $$ 4503599627370496 $$, which is in a much safer range at the expenses of accuracy for some divisions. Still, if the numerator were greater than $$ MAX \cdot \epsilon $$, it would become $$ \mathit{inf} $$. Otherwise, we could simply clip the output of the $$ / $$ operator to $$ MAX $$ and $$ -MAX $$ to guarantee that neither $$ \mathit{inf} $$ or $$ NaN $$ values are output:
 
 {% highlight faust linenos %}
 
