@@ -38,7 +38,7 @@ $$
 & \sqrt{x} = NaN \quad \{x \in \mathbb{R} : x < 0\} \\
 & \sqrt{\infty} = \infty \\
 & \sqrt{-\infty} = NaN \\
-& \log(0) = -\infty (wrongly +\infty in Faust) \\
+& \log(0) = -\infty \\
 & \log(\infty) = \infty \\
 & \log(x) = NaN \quad \{x \in \mathbb{R} : x < 0\} \\
 & cos(\pm \infty) = NaN \\
