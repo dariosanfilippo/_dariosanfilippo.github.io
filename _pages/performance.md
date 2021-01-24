@@ -10,8 +10,9 @@ nav: true
 
   <div class="p-3">
     <ul class="card-text font-weight-light list-group list-group-flush">
-      <li class="list-group-item">○ 9th of December, solo  at the University of Edinburgh.</li>
+      <li class="list-group-item">○ 9th of December, solo at the University of Edinburgh.</li>
       <li class="list-group-item">○ 29th of June, solo at Republik Kugelmugel, Vienna, organised by Klub Moozak.</li>
+      <li class="list-group-item">○ 19th of June, duo with Daniel Lercher at Steinergasse 8, Vienna, for the DerBlödeDritteMittwoch #87.</li>
       <li class="list-group-item">○ 6th of June, solo and duo with Philip Leitner at Echoraum, Vienna, commissioned by the International Society for Contemporary Music.</li>
       <li class="list-group-item">○ 29th of March, solo at Music and Performing Arts University, Vienna.</li>
     <br>
@@ -22,6 +23,8 @@ nav: true
 
   <div class="p-3">
     <ul class="card-text font-weight-light list-group list-group-flush">
+      <li class="list-group-item">○ 8th of November, solo at Velak Gala #105, Vienna.</li>
+      <li class="list-group-item">○ 19th of October, solo at Zentrale, Vienna.</li>
       <li class="list-group-item">○ 18th of April, solo at Sibelius Academy, Helsinki.</li>
     <br>
     </ul>
