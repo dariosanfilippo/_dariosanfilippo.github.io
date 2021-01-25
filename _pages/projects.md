@@ -1,8 +1,8 @@
 ---
 layout: page
-title: works
-permalink: /works/
-description: selected music works
+title: projects
+permalink: /projects/
+description: selected music projects
 nav: true
 ---
 
