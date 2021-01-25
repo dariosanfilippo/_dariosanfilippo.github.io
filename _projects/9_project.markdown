@@ -3,7 +3,7 @@ layout: page
 title: Sanfilippo & SEC_
 description: Performance duo with Mimmo "SEC_" Napolitano
 img: /assets/img/dariosec.jpg
-importance: 3
+importance: 9
 ---
 
 <div class="row justify-content-sm-center">
