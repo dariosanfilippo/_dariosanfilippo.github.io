@@ -6,7 +6,7 @@ img: /assets/img/humannetwork.jpg
 importance: 9
 ---
 <div class="row justify-content-sm-center">
-    <div class="col-sm-24 mt-3 mt-md-0">
+    <div class="col-sm-3 mt-3 mt-md-0">
         <img class="img-fluid rounded z-depth-1" src="/assets/img/humannetwork.jpg" alt="" title="Menahem Kahana / AFP / Getty"/>
     </div>
 </div>

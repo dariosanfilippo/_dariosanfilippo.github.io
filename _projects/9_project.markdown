@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Sanfilippo & SEC_
+title: Sanfilippo & SEC_ (2012-present)
 description: Performance duo with Mimmo "SEC_" Napolitano
 img: /assets/img/dariosec.jpg
 importance: 9
