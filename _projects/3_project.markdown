@@ -3,7 +3,7 @@ layout: page
 title: Machine Milieu (2013-present)
 description: Performance duo with Agostino Di Scipio
 img: /assets/img/machinemilieu.jpg
-importance: 9
+importance: 1
 ---
 
 <div class="row justify-content-sm-center">
