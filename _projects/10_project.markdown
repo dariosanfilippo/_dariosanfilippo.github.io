@@ -3,7 +3,7 @@ layout: page
 title: Human Network: Machine Nostalgia (2016-2018)
 description: A piece for three or more instrumental performers based on a relational notation system and a cybernetic approach to improvisation 
 img: /assets/img/humannetwork.jpg
-importance: 1
+importance: 8
 ---
 <div class="row justify-content-sm-center">
     <div class="col-sm-24 mt-3 mt-md-0">
