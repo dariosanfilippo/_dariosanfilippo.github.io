@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<title>Dario Sanfilippo   | Dario Sanfilippo</title>
+<title>Dario Sanfilippo   | Preliminary experiments for a time-domain noisiness estimator based on zero-crossing rate</title>
 <meta name="description" content="A simple website for an algorithmic music researcher.
 ">
 
@@ -31,7 +31,7 @@
 <link rel="shortcut icon" href="/assets/img/favicon.ico">
 <link rel="stylesheet" href="/assets/css/main.css">
 
-<link rel="canonical" href="/blog/">
+<link rel="canonical" href="/blog/2015/preliminary-experiments-for-a-time-domain/">
 
     
 <!-- MathJax -->
@@ -154,104 +154,21 @@
     <!-- Content -->
 
     <div class="container mt-5">
-      <div class="post">
+      
 
-  <div class="header-bar">
-    <h1>On music and DSP</h1>
-    <h2></h2>
-  </div>
+<div class="post">
 
+  <header class="post-header">
+    <h1 class="post-title">Preliminary experiments for a time-domain noisiness estimator based on zero-crossing rate</h1>
+    <p class="post-meta">October 26, 2015</p>
+  </header>
 
-  <ul class="post-list">
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2020/handling_inf_nan_values_in_faust_and_cpp/">Handling infinity and not-a-number (NaN) values in Faust and C++ audio programming</a></h3>
-        <p class="post-meta"> 28 December 2020</p>
-        <p>This post discusses insights gained over a few years of audio programming to implement robust Faust/C++ software, particularly when dealing with infinity and NaN values.</p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2020/faust_recursive_circuits/">Three ways to implement recursive circuits in the Faust language</a></h3>
-        <p class="post-meta"> 28 November 2020</p>
-        <p>This post shows examples of how to implement complex circuits in Faust.</p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2020/a-few-more-thoughts-on-zero-crossing-granular/">A few more thoughts on zero-crossing granular processing</a></h3>
-        <p class="post-meta"> 16 April 2020</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2019/granulation-without-windowing-using-delay-lines/">Granulation without windowing using delay lines and zero-crossing detection</a></h3>
-        <p class="post-meta"> 11 May 2019</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2019/early-experiments-with-granulators-and/">Early experiments with granulators and zero-crossing detection</a></h3>
-        <p class="post-meta"> 21 April 2019</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2018/implementing-digital-deterioration-by-increasingly/">implementing digital deterioration by increasingly</a></h3>
-        <p class="post-meta"> 30 November 2018</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2018/about-three-years-ago-i-was-writing-a-goodbye-post/">about three years ago i was writing a goodbye post</a></h3>
-        <p class="post-meta"> 29 August 2018</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2018/lectures-workshops-and-concert-at-the-sibelius/">Lectures, workshops and concert at the Sibelius Academy during 16th-23rd of April</a></h3>
-        <p class="post-meta"> 23 March 2018</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2018/brief-remarks-on-an-algorithm-for-the-estimation/">Brief remarks on an algorithm for the estimation of the lowest partial of a signal (and, consequently, its highest partial and, consequently, its bandwidth)</a></h3>
-        <p class="post-meta"> 30 January 2018</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2017/dariosanfilippopd-externals/">dariosanfilippo/pd-externals</a></h3>
-        <p class="post-meta"> 31 December 2017</p>
-        <p></p>
-      </li>
-    
-  </ul>
+  <article class="post-content">
+    <p>Zero-crossing rate (ZCR) has successfully been implemented for the recognition of voiced and unvoiced speech (see for example [Shete <i>et al. </i>2014]) or the detection of percussive sounds (see for example [Gouyon <i>et al. </i>2000]). The reason is that ZCR has a correlation to noisy sounds as they are usually broadband signals with high-frequency components, which indeed result in a higher ZCR compared to that of voiced speech (typically within 2kHz) or non-percussive sounds. </p><p>Noisiness is another sound feature which I am planning to use in my future works so I started experimenting with ZCR to see if that information by itself, given its correlation to noisy sounds, would have been enough for extracting that feature and obtain a somewhat representative index. </p><p>The first test was to compare the ZCR of a sinusoid at a certain frequency with that of a band-limited noise centred around the same frequency. I would have expected to have a higher ZCR in the second signal, although what I found out is that, in some cases, the ZCR in the noisy signal was actually slightly less than that of the sinusoidal one. That was initially surprising, but intuitively I thought that it was normal considering that the noisy signal had components at a lower frequency too. Basically, the ZCR itself wasn’t enough to get an estimation of the noisiness in a more general case, although it still contains the necessary information to obtain that.</p><p>What characterises noise is its non-periodicity, and this is represented by the <i>variations </i>in<i> </i>the ZCR rather than the ZCR itself. I though that the first derivative of the ZCR could have provided an acceptable result, and what follows is the description of a Pure Data patch which is satisfying at this preliminary stage.</p><p>The patch is unfortunately not compatible with the Vanilla release of Pure Data because I needed the ZCR object [zerox~], which is in the Pure Data Extended. [zerox~] outputs the number of zero-crossings in each vector from its left outlet, or a full-amplitude impulse each time a zero-crossing is detected from the right outlet. Here I am using the impulses in order to have the ZCR in the range [0;1], namely by averaging the impulses using a low-pass filter over a 10-msec window. (By the way, the average of the impulses will also tell you what the frequency of a sinusoidal sound is with a good degree of accuracy.) In order to obtain the degree of change in the ZCR I use a differentiator over successive averaging windows. This is nothing but subtracting the current average and the previous one. Considering that the direction of the variation is not relevant, the absolute value is taken. The resulting signal is then smoothed out using a 1-Hz low-pass filter, normalised to approximately 1 using white noise as a reference input signal, and clipped in order to avoid any possible value exceeding 1. This way the resulting signal should be a [0;1] index where, in theory, 0 represents a perfectly periodic signal, and 1 represents a totally non-periodic one. Lastly, this range has been mapped over a logarithmic scale to have a closer relationship with what the perception seemed to be.</p><p>The algorithm is still being tested and it will surely need some adjustments, although its behaviour seems to be correct for most of the cases. I’m not sure whether the screenshot of the patch is readable from this post, if not you can have a look at the patch <a href="https://dl.dropboxusercontent.com/u/43961783/noisiness.jpg" target="_blank">here</a>.</p><figure data-orig-width="1497" data-orig-height="660" class="tmblr-full"><img src="https://64.media.tumblr.com/734fe389e8c06efdbd2468c00cc87e0f/tumblr_inline_nwsieiiLmv1qlphda_540.jpg" alt="image" data-orig-width="1497" data-orig-height="660"/></figure>
+
+  </article>
 
   
-<nav aria-label="Blog page naviation">
-  <ul class="pagination pagination-lg justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link" href="" tabindex="-1" aria-disabled="">Newer</a>
-    </li>
-    
-      
-        <li class="page-item active"><a class="page-link" href="/blog/index.html" title="Dario Sanfilippo">1</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/2/index.html" title="Dario Sanfilippo - page 2">2</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/3/index.html" title="Dario Sanfilippo - page 3">3</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/4/index.html" title="Dario Sanfilippo - page 4">4</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/5/index.html" title="Dario Sanfilippo - page 5">5</a></li>
-      
-    
-    <li class="page-item ">
-      <a class="page-link" href="/blog/page/2/">Older</a>
-    </li>
-  </ul>
-</nav>
-
-
 
 </div>
 

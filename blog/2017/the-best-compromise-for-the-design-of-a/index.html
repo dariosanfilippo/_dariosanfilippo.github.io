@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>Dario Sanfilippo   | The best compromise for the design of a time-variant 1-pole filter in Pure Data</title>
+<meta name="description" content="A simple website for an algorithmic music researcher.
+">
+
+<!-- Open Graph -->
+
+
+<!-- Bootstrap & MDB -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha512-MoRNloxbStBcD8z3M/2BmnT+rg4IsMxPkXaGh2zD6LGNNFE80W3onsAhRcMAMrSoyWL9xD7Ert0men7vR8LUZg==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" integrity="sha512-RO38pBRxYH3SoOprtPTD86JFOclM51/XTIdEPh5j8sj4tp8jmQIx26twG52UaLi//hQldfrh7e51WzP9wuP32Q==" crossorigin="anonymous" />
+
+<!-- Fonts & Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"  integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons">
+<!-- <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Barlow:300,400,500,700|Barlow:100,300,400,500,700|Barlow"> -->
+<!-- <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Barlow+Condensed:300,400,500,700|Barlow+Condensed:100,300,400,500,700|Barlow+Condensed"> -->
+
+<!-- Code Syntax Highlighting -->
+<link rel="stylesheet" href="https://gitcdn.link/repo/jwarby/jekyll-pygments-themes/master/github.css" />
+
+<!-- Styles -->
+<link rel="shortcut icon" href="/assets/img/favicon.ico">
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<link rel="canonical" href="/blog/2017/the-best-compromise-for-the-design-of-a/">
+
+    
+<!-- MathJax -->
+<script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js"></script>
+<script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+
+  </head>
+
+  <body class="fixed-top-nav ">
+
+    <!-- Header -->
+
+    <header>
+
+    <!-- Nav Bar -->
+    <nav id="navbar" class="navbar navbar-light bg-white navbar-expand-sm fixed-top">
+    <div class="container">
+      
+      <a class="navbar-brand title font-weight-lighter" href="/">
+       <span class="font-weight-bold">Dario Sanfilippo</span>   
+      </a>
+      
+      <!-- Navbar Toogle -->
+      <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
+      </button>
+      <div class="collapse navbar-collapse text-right" id="navbarNav">
+        <ul class="navbar-nav ml-auto flex-nowrap">
+          <!-- About -->
+          <li class="nav-item ">
+            <a class="nav-link" href="/">
+              about
+              
+            </a>
+          </li>
+          
+          <!-- Blog -->
+          <li class="nav-item active">
+            <a class="nav-link" href="/blog/">
+              blog
+              
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/assets/pdf/CV.pdf" 
+                target="_blank">
+                CV
+            </a>
+            </li>
+          
+          <!-- Other pages -->
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/employment/">
+                employment
+                
+              </a>
+          </li>
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/performance/">
+                performance
+                
+              </a>
+          </li>
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/projects/">
+                projects
+                
+              </a>
+          </li>
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/publications/">
+                publications
+                
+              </a>
+          </li>
+          
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+    <!-- Content -->
+
+    <div class="container mt-5">
+      
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">The best compromise for the design of a time-variant 1-pole filter in Pure Data</h1>
+    <p class="post-meta">March 8, 2017</p>
+  </header>
+
+  <article class="post-content">
+    <p>These days, I’m trying to turn pretty much anything into a time-variant system so here is my experience with a 1-pole filter. What follows is a short blog post on a couple of days of work where I have experimented with different designs to find the best compromise for a filter whose cutoff frequency can be piloted by signals.</p><p>A 1-pole filter, which is called so because it has one resonance, is described by the following difference equation:</p><blockquote><p>y[n] = a * x[n] + b * y[n - 1].</p></blockquote><p><i>y[n]</i> is the output, <i>a </i>is the input coefficient, <i>x[n]</i> is the input, <i>b</i> is the feedback coefficient, <i>y[n - 1]</i> is the output one sample in the past.</p><p>The sign of the feedback coefficient determines the type of the filter and the position of the pole in the spectrum. Positive values result in a low-pass (LP) with a resonance at 0Hz; negative values result in a high-pass (HP) with a resonance at Nyquist, which is half the samplerate (SR).</p><p>In order for the filter to be stable, the absolute value of the feedback coefficient must not exceed 1, and the input coefficient is calculated as 1 - |b| so that we have unity gain at the pole.</p><p>The cutoff of a filter is defined as the frequency at which the input is attenuated by about 3.01dB.</p><p>The larger the feedback coefficient, the closer the cutoff of the filter will be to its pole. Of course, the relationship between the cutoff and the feedback coefficient is nonlinear, so this is the tricky aspect of the design of this filter.</p><p>Let’s consider the LP type.</p><p>To determine whether the coefficient calculation is accurate or not, we can tune in the cutoff of the filter and the frequency of a sinusoid that we use as input. Then, we can calculate the RMS and see if the attenuation is as expected. We will consider a good frequency response anything within a +/- 3% error from the expected attenuation.</p><p>The first experiments that I performed were using the implementation from the <i>Audio Programming</i> book by Boulanger and Lazzarini. The equation for the calculation of the coefficients uses trigonometric functions and is the following:<br/></p><blockquote><p>sqrt((2 - cos(w))^2 - 1) - 2 + cos(w)</p></blockquote><p>where <i>w</i> is the angular frequency defined as </p><blockquote><p>2 * π * f_Hz / SR.</p></blockquote><p>Please note that the design above produces negative coefficients. That is because they have based the design on a difference equation prototype with a negative sign for the feedback coefficient, so the coefficients would flip back into positive values.<br/></p><p>The frequency response of a digital filter is dependent on the SR, so we can use the normalised frequency (let’s call it <i>f_n</i>) defined as</p><blockquote><p>f_Hz / SR</p></blockquote><p>to have a unit which consistently describes the system regardless of its SR. Given that the maximum frequency in a digital system is Nyquist, the normalised frequency will be in the [0;.5] range.</p><p>With the design described above, the filter implemented in Pure Data Vanilla has a good frequency response from about .000010721 (~4.7281Hz at 44.1kHz SR) all the way up to .5 (Nyquist), although the closer we get to the lower value, the more the coefficients produce a staircase and there is less resolution for the fractional part of the cutoff. Below the lower value, the response of the filter worsens and the coefficients are clipped to 1 after ~.000067303 (~2.96807Hz) is reached, meaning that from that point downward the filter will just output DC (0Hz).</p><p>Another design that I tried and which also uses trigonometric functions is that from Cliff Sparks. The formula that he uses is the following:</p><blockquote><p>2 - cos(w) - sqrt((cos(w) - 3) * (cos(w) - 1)).</p></blockquote><p>This filter behaves very similarly to the one from Boulanger and Lazzarini, although the cutoff after which the coefficients are clipped to 1 is here .0000389273 (~1.7167Hz).</p><p>Miller Puckette in his implementation uses a formula that is an approximation:</p><blockquote><p>1 - w</p></blockquote><p>where <i>w</i>, like we said above, is the angular frequency.</p><p>That is a computationally very efficient calculation which actually has a rather good behaviour in the very low frequency range, roughly from .00000023692 (~.0104Hz at 44.1kHz) &ndash; which is the largest possible coefficient before unity in PD (.999999) &ndash; up to .00644731 (~284.326Hz). Though, the coefficients need to be clipped to 0 after ~.15915 or they would result in negative values.</p><p>After a look online, I found a blog post from Nigel Redmon who proposes the implementation from the book <i>Musical Applications for Microprocessors</i> by Hal Chamberlin. On a comment, Nigel also described the reasoning of the author of the book who proposed this implementation:</p><blockquote><p><i>“He notes that a one-pole filter is a leaky integrator, which is equivalent to an analog R-C low-pass filter. He also notes that it’s well-known that capacitor voltage discharge follows an inverse exponential curve: E = E<sub>0</sub>exp(-T/RC), where E is the next voltage after period T, given the initial voltage E<sub>0</sub>, R and C are the resistor and capacitor values in ohms and farads. The cutoff frequency is defined by Fc = 0.5πRC; substituting we get E = E<sub>0</sub>exp(-2πFcT). The time change, T, is the sample rate in the digital system, so converting to sampling frequency, Fs = 1/T, we get E = E<sub>0</sub>exp(-2πFc/Fs). To adjust for a gain of 1 at DC (0 Hz), we set the input multiplier to 1 – that value.”</i><br/></p></blockquote><p>Fc is the normalised frequency (f_n), so the final formula for the coefficients is:</p><blockquote><p>exp(-2 * π * f_n).</p></blockquote><p>This is by far the best compromise as, like Puckette’s implementation, it has a very good response in the very low range while keeping a reasonably good response throughout the whole spectrum.</p><p>Are the formulae using trigonometric functions wrong? No. They would actually give the most accurate response in a different environment.</p><p>Pure Data is an amazing software: it is open-source, reliable and efficient, although the internal resolution is (yet) single-precision, and that results in inaccurate coefficients when using trigonometric functions. Besides, if one wanted to implement the filter in the audio domain, the cosine function ([cos~]) is based on a table and that would result in even less accurate values than those given by the message domain one ([cos]).</p><p>The math operators involved in Puckette’s and Chamberlin’s implementations are consistent in both the message and audio domains, so they are good candidates for the time-variant version of the filter.</p><p>Puckette’s formula is the least computationally expensive, so it is probably the best one if all you care is filtering in the very low range.</p><p>Chamberlin’s implementation involves a call to an exponential function but it is still a reasonable option considering that the filter would work for the entire spectral range.</p><p>And considering that flipping the sign of the feedback coefficient would flip the frequency response, a HP filter based on that implementation could easily be achieved by changing the sign of the coefficient while flipping the cutoff around the centre of the spectrum:</p><blockquote><p>-exp(-2 * π * (.5 - f_n)).</p></blockquote>
+
+  </article>
+
+  
+
+</div>
+
+    </div>
+
+    <!-- Footer -->
+
+    
+<footer class="fixed-bottom">
+  <div class="container mt-0">
+    &copy; Copyright 2021 Dario Sanfilippo  .
+    Powered by <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>. Profile photo by Markus Gradwohl.
+
+    
+  </div>
+</footer>
+
+
+
+  </body>
+
+  <!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+  <!-- Bootsrap & MDB scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.4/umd/popper.min.js" integrity="sha512-eUQ9hGdLjBjY3F41CScH3UX+4JDSI9zXeroz7hJ+RteoCaY+GP/LDoM8AO+Pt+DRFw3nXqsjh9Zsts8hnYv8/A==" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha512-M5KW3ztuIICmVIhjSqXe01oV2bpe248gOxqmlcYrEzAvws7Pw3z6BK0iGbrwvdrUQUhi3eXgtxp5I8PDo9YfjQ==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js" integrity="sha512-Mug9KHKmroQFMLm93zGrjhibM2z2Obg9l6qFG2qKjXEXkMp/VDkI4uju9m4QKPjWSwQ6O2qzZEnJDEeCw0Blcw==" crossorigin="anonymous"></script>
+
+  
+<!-- Mansory & imagesLoaded -->
+<script defer src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script defer src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<script defer src="/assets/js/mansory.js" type="text/javascript"></script>
+
+
+  
+
+
+
+<!-- Load Common JS -->
+<script src="/assets/js/common.js"></script>
+
+
+</html>

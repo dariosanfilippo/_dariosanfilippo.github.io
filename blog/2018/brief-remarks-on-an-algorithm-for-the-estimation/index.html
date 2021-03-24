@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<title>Dario Sanfilippo   | Dario Sanfilippo</title>
+<title>Dario Sanfilippo   | Brief remarks on an algorithm for the estimation of the lowest partial of a signal (and, consequently, its highest partial and, consequently, its bandwidth)</title>
 <meta name="description" content="A simple website for an algorithmic music researcher.
 ">
 
@@ -31,7 +31,7 @@
 <link rel="shortcut icon" href="/assets/img/favicon.ico">
 <link rel="stylesheet" href="/assets/css/main.css">
 
-<link rel="canonical" href="/blog/">
+<link rel="canonical" href="/blog/2018/brief-remarks-on-an-algorithm-for-the-estimation/">
 
     
 <!-- MathJax -->
@@ -154,104 +154,21 @@
     <!-- Content -->
 
     <div class="container mt-5">
-      <div class="post">
+      
 
-  <div class="header-bar">
-    <h1>On music and DSP</h1>
-    <h2></h2>
-  </div>
+<div class="post">
 
+  <header class="post-header">
+    <h1 class="post-title">Brief remarks on an algorithm for the estimation of the lowest partial of a signal (and, consequently, its highest partial and, consequently, its bandwidth)</h1>
+    <p class="post-meta">January 30, 2018</p>
+  </header>
 
-  <ul class="post-list">
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2020/handling_inf_nan_values_in_faust_and_cpp/">Handling infinity and not-a-number (NaN) values in Faust and C++ audio programming</a></h3>
-        <p class="post-meta"> 28 December 2020</p>
-        <p>This post discusses insights gained over a few years of audio programming to implement robust Faust/C++ software, particularly when dealing with infinity and NaN values.</p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2020/faust_recursive_circuits/">Three ways to implement recursive circuits in the Faust language</a></h3>
-        <p class="post-meta"> 28 November 2020</p>
-        <p>This post shows examples of how to implement complex circuits in Faust.</p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2020/a-few-more-thoughts-on-zero-crossing-granular/">A few more thoughts on zero-crossing granular processing</a></h3>
-        <p class="post-meta"> 16 April 2020</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2019/granulation-without-windowing-using-delay-lines/">Granulation without windowing using delay lines and zero-crossing detection</a></h3>
-        <p class="post-meta"> 11 May 2019</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2019/early-experiments-with-granulators-and/">Early experiments with granulators and zero-crossing detection</a></h3>
-        <p class="post-meta"> 21 April 2019</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2018/implementing-digital-deterioration-by-increasingly/">implementing digital deterioration by increasingly</a></h3>
-        <p class="post-meta"> 30 November 2018</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2018/about-three-years-ago-i-was-writing-a-goodbye-post/">about three years ago i was writing a goodbye post</a></h3>
-        <p class="post-meta"> 29 August 2018</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2018/lectures-workshops-and-concert-at-the-sibelius/">Lectures, workshops and concert at the Sibelius Academy during 16th-23rd of April</a></h3>
-        <p class="post-meta"> 23 March 2018</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2018/brief-remarks-on-an-algorithm-for-the-estimation/">Brief remarks on an algorithm for the estimation of the lowest partial of a signal (and, consequently, its highest partial and, consequently, its bandwidth)</a></h3>
-        <p class="post-meta"> 30 January 2018</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2017/dariosanfilippopd-externals/">dariosanfilippo/pd-externals</a></h3>
-        <p class="post-meta"> 31 December 2017</p>
-        <p></p>
-      </li>
-    
-  </ul>
+  <article class="post-content">
+    <p>A couple of years ago I implemented a fairly robust and certainly CPU-friendly algorithm for the time-domain estimation of the spectral tendency. It works by using a crossover to divide the input spectrum into two parts whose energy is measured through the RMS. The imbalance between the two spectra is what creates a negative feedback loop by shifting the cutoff of the crossover towards the predominant side. As a result, the system quickly starts to (minimally) oscillate around the point of equal energy providing a rather accurate estimation of the spectral tendency.</p><p>One simple extension to this algorithm which I have recently implemented was to put a lowpass filter within the feedback loop, on top of the chain. Let’s remember that the spectral energy imbalance pushes the cutoff of the crossover towards the predominant side. What happens if that imbalance is used to pilot the cutoff of the lowpass filter too? The result is a positive feedback loop for the lowpass filter will weaken the upper part of the spectrum and the imbalance will be pushing towards the lower part even further. This recursive process of spectral attenuation, from high to low components, will finally end when there are no components left on the lower side of the spectrum as the negative feedback loop will now be oscillating around the equal energy point, which is the frequency of the lowest partial. The same principle can be used to implement a system which removes all frequency components up to the last one in the upper part of the spectrum, and the combination of the two can be used as an estimation of the bandwidth of a signal.</p><p>The problem with this kind of algorithms is that the filters need to be very selective. For the spectral tendency estimator, I am using 1-pole-1-zero highpass and lowpass filters for the crossover and that seems to be a good compromise: considering that the energy difference is what matters, the fact that the filters have large transition bandwidths is not a problem as they will overlap and counterbalance each other out. With the algorithm discussed here, the quality of the lowpass or highpass needs to be very high for removing the components otherwise the non-attenuated parts will affect the accuracy of the result. Namely, for this algorithm, I am using four cascaded 1-pole-1-zero filters and I am having fairly acceptable results for signals whose lowest components are around Nyquist/2. Above that, there is less resolution and the results are compromised. </p><p>One way to improve the algorithm could be to use elliptic filters. These have a very narrow transition band at low orders but also some fairly large ripples in the passing band, though that would not compromise the correct behaviour of the algorithm and a stronger attenuation of the components would hopefully give good results throughout the whole spectrum.<br/></p><p>Below you can see a simplified diagram of the system: some parts necessary to prevent it from entering attractors have been omitted.</p><figure data-orig-width="418" data-orig-height="1502" class="tmblr-full"><img src="https://64.media.tumblr.com/eca9143a015e8b7be7cdf051e292c499/tumblr_inline_p3ccm4yVBj1qlphda_540.jpg" alt="image" data-orig-width="418" data-orig-height="1502"/></figure>
+
+  </article>
 
   
-<nav aria-label="Blog page naviation">
-  <ul class="pagination pagination-lg justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link" href="" tabindex="-1" aria-disabled="">Newer</a>
-    </li>
-    
-      
-        <li class="page-item active"><a class="page-link" href="/blog/index.html" title="Dario Sanfilippo">1</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/2/index.html" title="Dario Sanfilippo - page 2">2</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/3/index.html" title="Dario Sanfilippo - page 3">3</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/4/index.html" title="Dario Sanfilippo - page 4">4</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/5/index.html" title="Dario Sanfilippo - page 5">5</a></li>
-      
-    
-    <li class="page-item ">
-      <a class="page-link" href="/blog/page/2/">Older</a>
-    </li>
-  </ul>
-</nav>
-
-
 
 </div>
 

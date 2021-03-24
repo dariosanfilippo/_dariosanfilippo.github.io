@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<title>Dario Sanfilippo   | Dario Sanfilippo</title>
+<title>Dario Sanfilippo   | Granulation without windowing using delay lines and zero-crossing detection</title>
 <meta name="description" content="A simple website for an algorithmic music researcher.
 ">
 
@@ -31,7 +31,7 @@
 <link rel="shortcut icon" href="/assets/img/favicon.ico">
 <link rel="stylesheet" href="/assets/css/main.css">
 
-<link rel="canonical" href="/blog/">
+<link rel="canonical" href="/blog/2019/granulation-without-windowing-using-delay-lines/">
 
     
 <!-- MathJax -->
@@ -154,104 +154,21 @@
     <!-- Content -->
 
     <div class="container mt-5">
-      <div class="post">
+      
 
-  <div class="header-bar">
-    <h1>On music and DSP</h1>
-    <h2></h2>
-  </div>
+<div class="post">
 
+  <header class="post-header">
+    <h1 class="post-title">Granulation without windowing using delay lines and zero-crossing detection</h1>
+    <p class="post-meta">May 11, 2019</p>
+  </header>
 
-  <ul class="post-list">
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2020/handling_inf_nan_values_in_faust_and_cpp/">Handling infinity and not-a-number (NaN) values in Faust and C++ audio programming</a></h3>
-        <p class="post-meta"> 28 December 2020</p>
-        <p>This post discusses insights gained over a few years of audio programming to implement robust Faust/C++ software, particularly when dealing with infinity and NaN values.</p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2020/faust_recursive_circuits/">Three ways to implement recursive circuits in the Faust language</a></h3>
-        <p class="post-meta"> 28 November 2020</p>
-        <p>This post shows examples of how to implement complex circuits in Faust.</p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2020/a-few-more-thoughts-on-zero-crossing-granular/">A few more thoughts on zero-crossing granular processing</a></h3>
-        <p class="post-meta"> 16 April 2020</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2019/granulation-without-windowing-using-delay-lines/">Granulation without windowing using delay lines and zero-crossing detection</a></h3>
-        <p class="post-meta"> 11 May 2019</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2019/early-experiments-with-granulators-and/">Early experiments with granulators and zero-crossing detection</a></h3>
-        <p class="post-meta"> 21 April 2019</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2018/implementing-digital-deterioration-by-increasingly/">implementing digital deterioration by increasingly</a></h3>
-        <p class="post-meta"> 30 November 2018</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2018/about-three-years-ago-i-was-writing-a-goodbye-post/">about three years ago i was writing a goodbye post</a></h3>
-        <p class="post-meta"> 29 August 2018</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2018/lectures-workshops-and-concert-at-the-sibelius/">Lectures, workshops and concert at the Sibelius Academy during 16th-23rd of April</a></h3>
-        <p class="post-meta"> 23 March 2018</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2018/brief-remarks-on-an-algorithm-for-the-estimation/">Brief remarks on an algorithm for the estimation of the lowest partial of a signal (and, consequently, its highest partial and, consequently, its bandwidth)</a></h3>
-        <p class="post-meta"> 30 January 2018</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2017/dariosanfilippopd-externals/">dariosanfilippo/pd-externals</a></h3>
-        <p class="post-meta"> 31 December 2017</p>
-        <p></p>
-      </li>
-    
-  </ul>
+  <article class="post-content">
+    <p>This post is a follow-up to the previous post on granulators using zero-crossing (ZC) detection. Some information has already been discussed, but more details have been added here.</p><p>The main idea behind a ZC granulator is that grains start and end at a ZC. ZC can be detected by observing the sign of the product between the current sample and the previous one:</p><p>zc[n] = {1, if x[n]x[n - 1] &lt; 0; 0, otherwise },</p><p>where x[n] is the input of the function. If we have a fixed audio source on a table, we can then scan the table and store all the ZC positions in an array of as many elements as the ZC occurrences so that they can be recalled at a later time. But signals can be irregular, and so can be ZC. If we want both the start and end of grains to be at a ZC, it means that the duration of each grain is variable and dependent on the signal itself.</p><p>The fundamental condition for a sequence of grains of duration D without discontinuities is that each successive grain should be triggered after the time D has passed, at the first ZC occurrence. It means that the output of the granulator must be continuously inspected to detect a ZC, and such information must be sent back into the section that generates each grain. It is the minimum requirement for a continuous stream without discontinuities, although harmonics, noise, and aliasing may be introduced without further adjustments.</p><p>One crucial aspect is to have consistency between the direction of the signals at the end of grain and that at the beginning of the successive one. The direction of a signal is given by the sign of its first derivative:</p><p>direction_up[n] = {1, if x[n] - x[n - 1] &gt; 0; 0, otherwise};<br/>direction_down[n] = {1, if x[n] - x[n - 1] &lt; 0; 0, otherwise}.</p><p>The ZC positions of the input that we want to process can then be stored into two different arrays: one for the ZC occurring in ascending signals, the other for ZC in descending signals. Similarly, the output of the granulator can be analysed for both direction and ZC so that the position of the next grain is selected from the corresponding set of ZC indexes.</p><p>Another improvement to have a smoother transition between grains is to start a grain from the successive sample than the one at the ZC position. Presumably, if both the end and beginning of grains are at a ZC position, they might be at a very close value which might result in the repetition of two samples. By skipping one sample at the beginning of each grain, there is a better continuity and smoothness in the resulting signal.</p><p>If the input signal is not fixed and we are using a circular buffer (CB) to update it continuously, then we can use two CB of the same size to store the ZC indexes of ascending and descending signals. To do so, we sample-and-hold (SAH) the indexes at which a ZC is detected so that any recalled position in the ZC buffers corresponds to a ZC position in the input buffer. A SAH unit has two inputs: c[n], a Boolean value, controls the sampling process; x[n] is the signal to be sampled:</p><p>SAH[n]  = {x[n], if c[n] = 1; SAH[n - 1], if c[n] = 0}.</p><p>If the size of the CB is S, then the writing index, i[n], cycles through integers from 0 to S-1. i[n] is the signal that we want to store in the ZC CB, whereas the conditions to trigger the SAH in ascending and descending signals are, respectively: </p><p>zc[n] AND direction_up[n],<br/>zc[n] AND direction_down[n].</p><p>In Faust, tables do not implement fractional indexes and are not ideal for pitch transposition; fractional delay lines are often used for live granular processing with pitch transposition. In the case of tables, recalling a ZC index is rather straightforward, and it is enough to read the input buffer at that position. With delay lines, since we move around the buffer by setting a delay relative to the position of the writing index, a few more steps are necessary. </p><p>In delay lines of length L samples, the writing index, i[n], cycles through integers from 0 to L - 1. This index is what we sample-and-hold when the ZC are detected and represents the time after which, relative to the beginning of the process, a ZC has occurred. It is essentially a time offset, and we can recall a ZC that has occurred at previous time P by setting the delay to i[n] - P. Of course, if P is greater than the current index i[n], then the negative value should be wrapped around the [0;L] range. A general wrapping function has the following form:</p><p>wrap[n] = fractional((x[n] - min) / (max - min))(max - min) + min.</p><p>By simply reorganising the input signal by arranging grains at different ZC positions in the buffer, we have a granulator without transposition. At this point, the pitch transposition of each grain can be implemented as a delay shift starting from the selected ZC position. If the desired grain rate is R, which determines the grain duration 1 / R, then the delay shift for a given pitch factor (PF) can be calculated as follows:</p><p>(1 - PF)(1 / R)(line)SR,</p><p>where SR is the samplerate and line is a signal that grows from 0 to 1 in 1 / R seconds. A line can be implemented as follows:</p><p>y[n] = R / SR + y[n - 1].</p><p>In the image below, we can see the spectrum of a 1kHz sine wave reconstructed through grains randomly selected over the whole buffer at a rate of 100 grains per second, and pitch-shifted of a factor of 3. Of course, the process does introduce some noise but it shows that it is correct. (It may not be clear from the image but the peak is centred at 3kHz; the SNR is about 60dB.)</p><figure data-orig-width="3584" data-orig-height="2324" class="tmblr-full"><img src="https://64.media.tumblr.com/53526fa2a6990c52912f91c882c20ba8/tumblr_inline_prccstmC521qlphda_540.png" alt="image" data-orig-width="3584" data-orig-height="2324"/></figure><p>Currently, I am particularly satisfied with the noisy textures generated by this algorithm, as the windowless design has a particular sharpness even at lower grain rates, which I could not perceive with the standard design.</p>
+
+  </article>
 
   
-<nav aria-label="Blog page naviation">
-  <ul class="pagination pagination-lg justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link" href="" tabindex="-1" aria-disabled="">Newer</a>
-    </li>
-    
-      
-        <li class="page-item active"><a class="page-link" href="/blog/index.html" title="Dario Sanfilippo">1</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/2/index.html" title="Dario Sanfilippo - page 2">2</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/3/index.html" title="Dario Sanfilippo - page 3">3</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/4/index.html" title="Dario Sanfilippo - page 4">4</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/5/index.html" title="Dario Sanfilippo - page 5">5</a></li>
-      
-    
-    <li class="page-item ">
-      <a class="page-link" href="/blog/page/2/">Older</a>
-    </li>
-  </ul>
-</nav>
-
-
 
 </div>
 

@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<title>Dario Sanfilippo   | Dario Sanfilippo</title>
+<title>Dario Sanfilippo   | implementing digital deterioration by increasingly</title>
 <meta name="description" content="A simple website for an algorithmic music researcher.
 ">
 
@@ -31,7 +31,7 @@
 <link rel="shortcut icon" href="/assets/img/favicon.ico">
 <link rel="stylesheet" href="/assets/css/main.css">
 
-<link rel="canonical" href="/blog/">
+<link rel="canonical" href="/blog/2018/implementing-digital-deterioration-by-increasingly/">
 
     
 <!-- MathJax -->
@@ -154,104 +154,21 @@
     <!-- Content -->
 
     <div class="container mt-5">
-      <div class="post">
+      
 
-  <div class="header-bar">
-    <h1>On music and DSP</h1>
-    <h2></h2>
-  </div>
+<div class="post">
 
+  <header class="post-header">
+    <h1 class="post-title">implementing digital deterioration by increasingly</h1>
+    <p class="post-meta">November 30, 2018</p>
+  </header>
 
-  <ul class="post-list">
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2020/handling_inf_nan_values_in_faust_and_cpp/">Handling infinity and not-a-number (NaN) values in Faust and C++ audio programming</a></h3>
-        <p class="post-meta"> 28 December 2020</p>
-        <p>This post discusses insights gained over a few years of audio programming to implement robust Faust/C++ software, particularly when dealing with infinity and NaN values.</p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2020/faust_recursive_circuits/">Three ways to implement recursive circuits in the Faust language</a></h3>
-        <p class="post-meta"> 28 November 2020</p>
-        <p>This post shows examples of how to implement complex circuits in Faust.</p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2020/a-few-more-thoughts-on-zero-crossing-granular/">A few more thoughts on zero-crossing granular processing</a></h3>
-        <p class="post-meta"> 16 April 2020</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2019/granulation-without-windowing-using-delay-lines/">Granulation without windowing using delay lines and zero-crossing detection</a></h3>
-        <p class="post-meta"> 11 May 2019</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2019/early-experiments-with-granulators-and/">Early experiments with granulators and zero-crossing detection</a></h3>
-        <p class="post-meta"> 21 April 2019</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2018/implementing-digital-deterioration-by-increasingly/">implementing digital deterioration by increasingly</a></h3>
-        <p class="post-meta"> 30 November 2018</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2018/about-three-years-ago-i-was-writing-a-goodbye-post/">about three years ago i was writing a goodbye post</a></h3>
-        <p class="post-meta"> 29 August 2018</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2018/lectures-workshops-and-concert-at-the-sibelius/">Lectures, workshops and concert at the Sibelius Academy during 16th-23rd of April</a></h3>
-        <p class="post-meta"> 23 March 2018</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2018/brief-remarks-on-an-algorithm-for-the-estimation/">Brief remarks on an algorithm for the estimation of the lowest partial of a signal (and, consequently, its highest partial and, consequently, its bandwidth)</a></h3>
-        <p class="post-meta"> 30 January 2018</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2017/dariosanfilippopd-externals/">dariosanfilippo/pd-externals</a></h3>
-        <p class="post-meta"> 31 December 2017</p>
-        <p></p>
-      </li>
-    
-  </ul>
+  <article class="post-content">
+    <img src="https://64.media.tumblr.com/8404ee7830c0ec15a24c1c36aafc2855/tumblr_pizhg4Ff0i1r0ulxko1_1280.jpg"/><br/><h2><b>Implementing digital deterioration by increasingly unstable nonlinear feedback networks: an exploration of phase transitions in dynamical systems</b></h2><p>It’s been three months since I moved to Vienna and it feels like I moved here three days ago. The city is great, just as I remembered it, and I like the people I’m working with.</p><p><a href="https://rottingsounds.org/" target="_blank">Rotting Sounds</a>, whose project manager is Thomas Grill, is an artistic research project investigating the idea of temporal deterioration of digital audio. Thomas invited me to contribute to the project after I told him I was gonna move to Vienna. After a few meetings and discussions, I came up with the idea of working with feedback systems that progressively become unstable to structurally and conceptually render the idea of digital deterioration.</p><p>The main purpose is to implement a set of relatively small networks with different topologies, feedback matrixes, and nonlinearities to microscopically explore the phase transitions of the systems by means of adaptive behaviours. The works will be exhibited at the <a href="https://rottingsounds.org/category/threads/mold-museum/" target="_blank">Mold Museum of Sounds</a> starting from April and the deterioration process will take place over a period of weeks.</p><p>Pure Data is the software that I normally use for my works, but the programming environment used for these networks is the Faust language, for double precision in the DSP calculations is a requirement given the very long lifespan that these networks need to achieve full deterioration.</p><p>The periods of the feedback loops in the networks, which may be chosen as prime, co-prime, or near-integer ratios depending on whether more or less spectral peak overlappings are desired, will be affected by one or more features of the environment where the works will be running.</p><p>The nonlinear functions will be a set of bounded saturators. These functions work in a way such that the waveshaping is directly proportional to the amplitude of the input signal, which can be used as a deterioration process for progressively growing signals.</p><p>Networks will start from the condition of <i>marginal stability</i>, that is a configuration of the nonlinear functions and feedback coefficients so that a constant energy stream is produced by a Dirac impulse. Over a time span of one or more weeks, the feedback coefficients of the networks will be increasing from the stability threshold to an arbitrarily chosen value outside of the stability range. The systems will soon become self-oscillating but the limiting effect of the saturators will prevent them from growing infinitely.</p><p>As the feedback coefficients increase, the input of the nonlinear functions will grow too, resulting in a stronger deterioration which in turn will produce richer spectra. With more frequency components, there will also be more interactions between signals and instabilities.</p><p>The output of the system is the result of recursively combined intermodulation phenomena – both at formal (beats) and timbral (sidebands) time scales – together with the iterated nonlinearities inherent in the DSP structure. </p><p>Phase transitions are particularly interesting and nontrivial states of dynamical systems, and the most profound aesthetic aspect of this work is the time-stretched exploration of such areas while going through different degrees of instability. This microscopic inspection will be realised by implementing an adaptive behaviour that affects the growth rate of the feedback coefficients. Specifically, the detection of a phase transition will slow down the growth of the coefficients, while the detection of a stable state will increase it.</p>
+
+  </article>
 
   
-<nav aria-label="Blog page naviation">
-  <ul class="pagination pagination-lg justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link" href="" tabindex="-1" aria-disabled="">Newer</a>
-    </li>
-    
-      
-        <li class="page-item active"><a class="page-link" href="/blog/index.html" title="Dario Sanfilippo">1</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/2/index.html" title="Dario Sanfilippo - page 2">2</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/3/index.html" title="Dario Sanfilippo - page 3">3</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/4/index.html" title="Dario Sanfilippo - page 4">4</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/5/index.html" title="Dario Sanfilippo - page 5">5</a></li>
-      
-    
-    <li class="page-item ">
-      <a class="page-link" href="/blog/page/2/">Older</a>
-    </li>
-  </ul>
-</nav>
-
-
 
 </div>
 
